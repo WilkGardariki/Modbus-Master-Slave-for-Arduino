@@ -315,7 +315,11 @@ void Modbus::begin(long u32speed)
 #endif
     case 0:
     default:
+#ifndef ARDUINO_AVR_LEONARDO
         port = &Serial;
+#else
+        port = &Serial1;
+#endif
         break;
     }
 

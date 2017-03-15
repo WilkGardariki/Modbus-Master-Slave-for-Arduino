@@ -46,7 +46,7 @@ NB : the library will be available to use in sketches, but examples for the libr
 
 KNOWN ISSUES
 =================================================================
-It is not compatible with ARDUINO LEONARDO and not tested under ARDUINO DUE and newer boards.
+It is not tested under ARDUINO DUE and newer boards.
 
 TODO List
 =================================================================
