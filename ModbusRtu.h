@@ -124,6 +124,7 @@ enum ERR_LIST
 
 enum
 {
+	NO_ERROR = 0,
     NO_REPLY = 255,
     EXC_FUNC_CODE = 1,
     EXC_ADDR_RANGE = 2,
@@ -558,7 +559,8 @@ uint8_t Modbus::getState()
 /**
  * Get the last error in the protocol processor
  *
- * @returnreturn   NO_REPLY = 255      Time-out
+ * @return   NO_ERROR = 0
+ * @return   NO_REPLY = 255      Time-out
  * @return   EXC_FUNC_CODE = 1   Function code not available
  * @return   EXC_ADDR_RANGE = 2  Address beyond available space for Modbus registers
  * @return   EXC_REGS_QUANT = 3  Coils or registers number beyond the available space
@@ -657,6 +659,8 @@ int8_t Modbus::query( modbus_t telegram )
 
     sendTxBuffer();
     u8state = COM_WAITING;
+    u8lastError = NO_ERROR;
+
     return 0;
 }
 
@@ -806,7 +810,7 @@ int8_t Modbus::poll( uint16_t *regs, uint8_t u8size )
     }
 
     u32timeOut = millis();
-    u8lastError = 0;
+    u8lastError = NO_ERROR;
 
     // process message
     switch( au8Buffer[ FUNC ] )
