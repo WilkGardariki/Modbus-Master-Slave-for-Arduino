@@ -712,6 +712,7 @@ int8_t Modbus::poll()
     if (i8state < 7)
     {
         u8state = COM_IDLE;
+        u8lastError = NO_REPLY;
         u16errCnt++;
         return i8state;
     }
@@ -721,6 +722,7 @@ int8_t Modbus::poll()
     if (u8exception != 0)
     {
         u8state = COM_IDLE;
+        u8lastError = u8exception;
         return u8exception;
     }
 
